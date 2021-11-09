@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Users/Riezky M/AndroidStudioProjects/GithubUserDicoding/app/src/main/res/drawable/background_tab_selected.xml" value="0.22314814814814815" />
+        <entry key="..\:/Users/Riezky M/AndroidStudioProjects/GithubUserDicoding/app/src/main/res/drawable/drawable_gradient_purple.xml" value="0.240625" />
+        <entry key="..\:/Users/Riezky M/AndroidStudioProjects/GithubUserDicoding/app/src/main/res/drawable/tab_layout_selector.xml" value="0.22314814814814815" />
+        <entry key="..\:/Users/Riezky M/AndroidStudioProjects/GithubUserDicoding/app/src/main/res/layout/activity_main.xml" value="0.25" />
+        <entry key="..\:/Users/Riezky M/AndroidStudioProjects/GithubUserDicoding/app/src/main/res/layout/activity_splash_screen.xml" value="0.22083333333333333" />
+        <entry key="..\:/Users/Riezky M/AndroidStudioProjects/GithubUserDicoding/app/src/main/res/layout/activity_user_detail.xml" value="0.22447916666666667" />
+        <entry key="..\:/Users/Riezky M/AndroidStudioProjects/GithubUserDicoding/app/src/main/res/layout/item_user_github.xml" value="0.25" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_13" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>

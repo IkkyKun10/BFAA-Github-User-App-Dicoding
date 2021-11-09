@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Github User Dicoding</string>
+    <string name="user_name">name_user</string>
+    <string name="follower">Follower</string>
+    <string name="location">location</string>
+    <string name="user">User</string>
+    <string name="repository">Repository</string>
+    <string name="following">Following</string>
+    <string name="followers">Followers</string>
+    <string name="_100">100</string>
+</resources>

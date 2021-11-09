@@ -24,7 +24,7 @@ class UserDetailActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         supportActionBar?.elevation = 0f
-        //supportActionBar?.hide()
+
 
         val sectionPagerAdapter = SectionPagerAdapter(this, supportFragmentManager)
         binding.viewPager.adapter = sectionPagerAdapter

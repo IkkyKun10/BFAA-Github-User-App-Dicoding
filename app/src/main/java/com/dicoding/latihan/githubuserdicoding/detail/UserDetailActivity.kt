@@ -1,6 +1,5 @@
 package com.dicoding.latihan.githubuserdicoding.detail
 
-import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
@@ -11,7 +10,7 @@ import com.dicoding.latihan.githubuserdicoding.SectionPagerAdapter
 import com.dicoding.latihan.githubuserdicoding.databinding.ActivityUserDetailBinding
 import com.dicoding.latihan.githubuserdicoding.raw.User
 
-class UserDetail : AppCompatActivity() {
+class UserDetailActivity : AppCompatActivity() {
 
     companion object {
         const val EXTRA_INTENT = "extra_intent"
@@ -49,7 +48,6 @@ class UserDetail : AppCompatActivity() {
         return true
     }
 
-    @SuppressLint("SetTextI18n")
     private fun dataShowUser(user: User?) {
 
         binding.tvName.text = user?.name

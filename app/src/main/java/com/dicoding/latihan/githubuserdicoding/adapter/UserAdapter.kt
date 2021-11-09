@@ -1,6 +1,5 @@
 package com.dicoding.latihan.githubuserdicoding.adapter
 
-import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -8,8 +7,6 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.dicoding.latihan.githubuserdicoding.R
 import com.dicoding.latihan.githubuserdicoding.databinding.ItemUserGithubBinding
-import com.dicoding.latihan.githubuserdicoding.detail.UserDetail
-import com.dicoding.latihan.githubuserdicoding.raw.GithubUser
 import com.dicoding.latihan.githubuserdicoding.raw.User
 
 class UserAdapter(private val listUser: ArrayList<User>, private val callback: ShareCallback) : RecyclerView.Adapter<UserAdapter.UserViewHolder>() {
@@ -22,12 +19,7 @@ class UserAdapter(private val listUser: ArrayList<User>, private val callback: S
                 tvItemFollower.text = user.follower.toString()
                 tvItemCompany.text = user.company
                 tvItemLocation.text = user.location
-                itemView.setOnClickListener {
-                    val intent = Intent(itemView.context, UserDetail::class.java)
-                    intent.putExtra(UserDetail.EXTRA_INTENT, GithubUser.listGithubUser[0])
-                    intent.putExtra(UserDetail.EXTRA_INTENT, user)
-                    itemView.context.startActivity(intent)
-                }
+                itemView.setOnClickListener { callback.onNavDetail(user) }
 
                 imgshare.setOnClickListener { callback.onShareClick(user) }
 

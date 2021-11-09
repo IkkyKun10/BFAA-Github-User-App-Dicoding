@@ -8,4 +8,9 @@
     <string name="following">Following</string>
     <string name="followers">Followers</string>
     <string name="_100">100</string>
+
+
+    <string name="share">Bagikan Akun Ini Sekarang</string>
+    <string name="shareAccept">Segera kunjungi akun GitHub ${user.name} untuk menikmati sajian coding open source</string>
+    <string name="githubicon">githubicon</string>
 </resources>

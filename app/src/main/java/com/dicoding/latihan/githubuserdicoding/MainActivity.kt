@@ -41,7 +41,7 @@ class MainActivity : AppCompatActivity(), ShareCallback {
                 .from(this)
                 .setType(mimeType)
                 .setChooserTitle(R.string.share)
-                .setText("Segera kunjungi akun GitHub ${user.name} untuk menikmati sajian coding open source")
+                .setText(this.resources.getString(R.string.shareAccept, user.name))
                 .startChooser()
         }
     }

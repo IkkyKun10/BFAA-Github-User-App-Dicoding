@@ -11,6 +11,7 @@
 
 
     <string name="share">Bagikan Akun Ini Sekarang</string>
-    <string name="shareAccept">Segera kunjungi akun GitHub ${user.name} untuk menikmati sajian coding open source</string>
+    <string name="shareAccept">Segera kunjungi akun GitHub %s untuk menikmati sajian coding open source</string>
     <string name="githubicon">githubicon</string>
+    <string name="name_user">"@%s"</string>
 </resources>

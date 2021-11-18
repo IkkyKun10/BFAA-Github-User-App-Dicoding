@@ -56,7 +56,7 @@ class UserDetailActivity : AppCompatActivity() {
         binding.tvRepository.text = user?.repository.toString()
         binding.tvCompany.text = user?.company
         binding.tvLocation.text = user?.location
-        binding.tvUsername.text = "@${user?.username}"
+        binding.tvUsername.text = this.resources.getString(R.string.name_user, user?.username)
 
 
         Glide.with(this)

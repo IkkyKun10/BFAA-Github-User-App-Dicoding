@@ -8,6 +8,10 @@ import android.os.Looper
 
 class SplashScreenActivity : AppCompatActivity() {
 
+    companion object {
+        private const val TIME_SECOND = 3000
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash_screen)
@@ -16,6 +20,6 @@ class SplashScreenActivity : AppCompatActivity() {
             Handler(Looper.getMainLooper())
             startActivity(Intent(this, MainActivity::class.java))
             finish()
-        }, 3000)
+        }, TIME_SECOND.toLong())
     }
 }

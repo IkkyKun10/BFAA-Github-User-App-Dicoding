@@ -36,9 +36,9 @@ class UserDetailActivity : AppCompatActivity() {
 
         //binding.toolbar.setNavigationOnClickListener{onBackPressed()}
 
-        val userIntent = intent.getParcelableExtra<User>(EXTRA_INTENT)
+        //val userIntent = intent.getParcelableExtra<User>(EXTRA_INTENT)
 
-        dataShowUser(userIntent)
+        //dataShowUser(userIntent)
 
 
     }

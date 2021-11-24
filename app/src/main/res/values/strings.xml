@@ -14,4 +14,7 @@
     <string name="shareAccept">Segera kunjungi akun GitHub %s untuk menikmati sajian coding open source</string>
     <string name="githubicon">githubicon</string>
     <string name="name_user">"@%s"</string>
+    <string name="Mencari">Search</string>
+    <string name="account_not_found">Akun Tidak Ditemukan</string>
+    <string name="alamat_url">alamat url</string>
 </resources>

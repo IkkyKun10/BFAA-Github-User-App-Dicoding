@@ -17,7 +17,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:padding="8dp">
 
         <de.hdodenhof.circleimageview.CircleImageView
@@ -47,7 +47,7 @@
             tools:text="@string/user_name" />
 
         <TextView
-            android:id="@+id/tv_item_follower"
+            android:id="@+id/tv_item_url"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
@@ -58,35 +58,35 @@
             card_view:layout_constraintStart_toStartOf="@+id/tv_item_name"
             card_view:layout_constraintTop_toBottomOf="@+id/tv_item_name"
             card_view:layout_constraintVertical_bias="0.0"
-            tools:text="@string/follower" />
+            tools:text="@string/alamat_url" />
 
         <TextView
-            android:id="@+id/tv_item_location"
+            android:id="@+id/tv_item_id"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
             android:ellipsize="end"
             android:maxLines="5"
             card_view:layout_constraintBottom_toBottomOf="@+id/img_item_user"
-            card_view:layout_constraintEnd_toEndOf="@+id/tv_item_follower"
-            card_view:layout_constraintStart_toStartOf="@+id/tv_item_follower"
-            card_view:layout_constraintTop_toBottomOf="@+id/tv_item_follower"
+            card_view:layout_constraintEnd_toEndOf="@+id/tv_item_url"
+            card_view:layout_constraintStart_toStartOf="@+id/tv_item_url"
+            card_view:layout_constraintTop_toBottomOf="@+id/tv_item_url"
             card_view:layout_constraintVertical_bias="0.0"
-            tools:text="@string/location" />
+            tools:text="@string/_100" />
 
         <TextView
-            android:id="@+id/tv_item_company"
+            android:id="@+id/tv_item_type"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
             android:ellipsize="end"
             android:maxLines="5"
             card_view:layout_constraintBottom_toBottomOf="@+id/img_item_user"
-            card_view:layout_constraintEnd_toEndOf="@+id/tv_item_location"
-            card_view:layout_constraintStart_toStartOf="@+id/tv_item_location"
-            card_view:layout_constraintTop_toBottomOf="@+id/tv_item_location"
+            card_view:layout_constraintEnd_toEndOf="@+id/tv_item_id"
+            card_view:layout_constraintStart_toStartOf="@+id/tv_item_id"
+            card_view:layout_constraintTop_toBottomOf="@+id/tv_item_id"
             card_view:layout_constraintVertical_bias="0.0"
-            tools:text="@string/location" />
+            tools:text="Users" />
 
         <ImageButton
             android:id="@+id/imgshare"

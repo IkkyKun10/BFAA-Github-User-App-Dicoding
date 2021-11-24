@@ -1,5 +1,7 @@
 package com.dicoding.latihan.githubuserdicoding.raw
 
+/*
+
 import com.dicoding.latihan.githubuserdicoding.R
 
 object GithubUser {
@@ -128,3 +130,5 @@ object GithubUser {
         }
 
 }
+
+ */

@@ -5,6 +5,9 @@
       <map>
         <entry key="..\:/Users/Riezky M/AndroidStudioProjects/GithubUserDicoding/app/src/main/res/drawable/background_tab_selected.xml" value="0.22314814814814815" />
         <entry key="..\:/Users/Riezky M/AndroidStudioProjects/GithubUserDicoding/app/src/main/res/drawable/drawable_gradient_purple.xml" value="0.240625" />
+        <entry key="..\:/Users/Riezky M/AndroidStudioProjects/GithubUserDicoding/app/src/main/res/drawable/ic_loading.xml" value="0.20092592592592592" />
+        <entry key="..\:/Users/Riezky M/AndroidStudioProjects/GithubUserDicoding/app/src/main/res/drawable/ic_no_data.xml" value="0.20092592592592592" />
+        <entry key="..\:/Users/Riezky M/AndroidStudioProjects/GithubUserDicoding/app/src/main/res/drawable/ic_search.xml" value="0.20092592592592592" />
         <entry key="..\:/Users/Riezky M/AndroidStudioProjects/GithubUserDicoding/app/src/main/res/drawable/tab_layout_selector.xml" value="0.22314814814814815" />
         <entry key="..\:/Users/Riezky M/AndroidStudioProjects/GithubUserDicoding/app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="..\:/Users/Riezky M/AndroidStudioProjects/GithubUserDicoding/app/src/main/res/layout/activity_splash_screen.xml" value="0.22083333333333333" />

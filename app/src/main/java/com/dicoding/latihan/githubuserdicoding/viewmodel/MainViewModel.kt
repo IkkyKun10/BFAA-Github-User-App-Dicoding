@@ -17,8 +17,9 @@ class MainViewModel : ViewModel() {
         private const val TAG = "MainViewModel"
     }
 
-    val listUsers = MutableLiveData<ArrayList<UserSearch>>()
-    //val listUser : LiveData<ArrayList<UserSearch>> = _listUsers
+    private val listUsers = MutableLiveData<ArrayList<UserSearch>>()
+
+    val listMainUsers : LiveData<ArrayList<UserSearch>> = listUsers
 
 //    private val _isLoading = MutableLiveData<Boolean>()
 //    val isLoading : LiveData<Boolean> = _isLoading
@@ -52,7 +53,7 @@ class MainViewModel : ViewModel() {
             override fun onResponse(call: Call<ArrayList<UserSearch>>, response: Response<ArrayList<UserSearch>>) {
                 //_isLoading.value = false
                 if (response.isSuccessful) {
-                    //getUser.postValue(response.body())
+                    listUsers.value = response.body()
                 } else {
                     Log.d(TAG, "Failure: ${response.message()}")
                 }

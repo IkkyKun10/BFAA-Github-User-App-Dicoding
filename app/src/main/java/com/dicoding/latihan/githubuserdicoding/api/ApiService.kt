@@ -12,7 +12,7 @@ interface ApiService {
         @Query("q") query: String
     ) : Call<UserResponse>
 
-    @GET("users")
+    @GET("{users}")
     @Headers("Authorization: token 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")
     fun getListUser(
         @Path("users") users: String

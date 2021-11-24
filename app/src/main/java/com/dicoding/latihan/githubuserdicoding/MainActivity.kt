@@ -5,22 +5,18 @@ import android.os.Bundle
 import android.view.KeyEvent
 import android.view.View
 import androidx.activity.viewModels
-import androidx.core.app.ShareCompat
-import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.dicoding.latihan.githubuserdicoding.adapter.ShareCallback
 import com.dicoding.latihan.githubuserdicoding.adapter.UserAdapter
 import com.dicoding.latihan.githubuserdicoding.databinding.ActivityMainBinding
-import com.dicoding.latihan.githubuserdicoding.raw.User
 import com.dicoding.latihan.githubuserdicoding.viewmodel.MainViewModel
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
     //private val list: ArrayList<User> = arrayListOf()
-    private lateinit var viewModel : MainViewModel
+    //private lateinit var viewModel : MainViewModel
     private lateinit var userAdapter: UserAdapter
+    private val viewModel by viewModels<MainViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,8 +27,8 @@ class MainActivity : AppCompatActivity() {
 
 
 
-        viewModel = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory()).get(MainViewModel::class.java)
-
+        //viewModel = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory()).get(MainViewModel::class.java)
+        getMainUser()
 
         binding.btnSearch.setOnClickListener {
             searchUser()
@@ -52,7 +48,7 @@ class MainActivity : AppCompatActivity() {
 
         viewModel.getUser().observe(this, { users ->
             if (users != null) {
-                userAdapter.setListSearch(users)
+                userAdapter.setList(users)
                 showLoading(false)
             } else {
                 showLoading(false)
@@ -61,6 +57,18 @@ class MainActivity : AppCompatActivity() {
         })
 
 
+    }
+
+    private fun getMainUser() {
+        showLoading(true)
+        viewModel.getListUser()
+
+        viewModel.listMainUsers.observe(this, {listMain ->
+            if (listMain != null) {
+                userAdapter.setList(listMain)
+                showLoading(false)
+            }
+        })
     }
 
 

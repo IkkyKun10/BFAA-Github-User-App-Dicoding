@@ -18,7 +18,7 @@ class UserAdapter : RecyclerView.Adapter<UserAdapter.UserViewHolder>() {
     private val listUser = ArrayList<UserSearch>()
     private val listCallback = ArrayList<User>()
 
-    fun setListSearch(users: ArrayList<UserSearch>) {
+    fun setList(users: ArrayList<UserSearch>) {
         this.listUser.clear()
         this.listUser.addAll(users)
         notifyDataSetChanged()
@@ -45,7 +45,7 @@ class UserAdapter : RecyclerView.Adapter<UserAdapter.UserViewHolder>() {
                     .into(imgItemUser)
             }
 
-            Log.e("User Adapter", "Failure: ${user.username}")
+            Log.e("User Adapter", "Checking: ${user.username}")
 
         }
 

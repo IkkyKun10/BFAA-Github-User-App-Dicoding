@@ -58,15 +58,18 @@ class MainActivity : AppCompatActivity(), ShareCallback {
             }
         })
 
-        userAdapter.setItemClickCallback(object : UserAdapter.OnItemClickCallback {
-            override fun onItemClick(data: UserSearch) {
-                Intent(this@MainActivity, UserDetailActivity::class.java).also {
-                    it.putExtra(UserDetailActivity.EXTRA_INTENT, data.username)
-                    startActivity(it)
-                }
-            }
-
-        })
+        /**
+         * alternatif intent ke kelas Detail
+         */
+//        userAdapter.setItemClickCallback(object : UserAdapter.OnItemClickCallback {
+//            override fun onItemClick(data: UserSearch) {
+//                Intent(this@MainActivity, UserDetailActivity::class.java).also {
+//                    it.putExtra(UserDetailActivity.EXTRA_INTENT, data.username)
+//                    startActivity(it)
+//                }
+//            }
+//
+//        })
 
     }
 
@@ -112,15 +115,12 @@ class MainActivity : AppCompatActivity(), ShareCallback {
     }
 
 
-//    override fun onNavDetail(users: UserSearch) {
-//        val intent = Intent(this, UserDetailActivity::class.java)
-//        intent.putExtra(UserDetailActivity.EXTRA_INTENT, users.username)
-//        startActivity(intent)
-////        val intent = Intent(this, UserDetailActivity::class.java)
-////        intent.putExtra(UserDetailActivity.EXTRA_INTENT, GithubUser.listGithubUser[0])
-////        intent.putExtra(UserDetailActivity.EXTRA_INTENT, user)
-////        startActivity(intent)
-//    }
+    override fun onNavDetail(users: UserSearch) {
+        val intent = Intent(this, UserDetailActivity::class.java)
+        intent.putExtra(UserDetailActivity.EXTRA_INTENT, users.username)
+        startActivity(intent)
+
+    }
 
 
 

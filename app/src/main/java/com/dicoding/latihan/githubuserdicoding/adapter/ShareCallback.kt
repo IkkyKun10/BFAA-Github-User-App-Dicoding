@@ -6,5 +6,5 @@ interface ShareCallback {
     
     fun onShareClick(users: UserSearch)
 
-    //fun onNavDetail(users: UserSearch)
+    fun onNavDetail(users: UserSearch)
 }

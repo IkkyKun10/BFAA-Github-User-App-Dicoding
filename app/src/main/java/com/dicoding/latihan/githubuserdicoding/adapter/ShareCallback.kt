@@ -1,10 +1,10 @@
 package com.dicoding.latihan.githubuserdicoding.adapter
 
-import com.dicoding.latihan.githubuserdicoding.raw.User
+import com.dicoding.latihan.githubuserdicoding.raw.UserSearch
 
 interface ShareCallback {
     
-    fun onShareClick(user: User)
+    fun onShareClick(users: UserSearch)
 
-    fun onNavDetail(user: User)
+    //fun onNavDetail(users: UserSearch)
 }

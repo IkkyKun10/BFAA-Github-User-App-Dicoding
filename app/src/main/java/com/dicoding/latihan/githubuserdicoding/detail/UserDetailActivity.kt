@@ -3,12 +3,13 @@ package com.dicoding.latihan.githubuserdicoding.detail
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
+import androidx.activity.viewModels
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.dicoding.latihan.githubuserdicoding.R
 import com.dicoding.latihan.githubuserdicoding.SectionPagerAdapter
 import com.dicoding.latihan.githubuserdicoding.databinding.ActivityUserDetailBinding
-import com.dicoding.latihan.githubuserdicoding.raw.User
+import com.dicoding.latihan.githubuserdicoding.raw.UserDetailResponse
 
 class UserDetailActivity : AppCompatActivity() {
 
@@ -17,6 +18,7 @@ class UserDetailActivity : AppCompatActivity() {
     }
 
     private lateinit var binding: ActivityUserDetailBinding
+    private val viewModel by viewModels<DetailViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,9 +38,18 @@ class UserDetailActivity : AppCompatActivity() {
 
         //binding.toolbar.setNavigationOnClickListener{onBackPressed()}
 
-        //val userIntent = intent.getParcelableExtra<User>(EXTRA_INTENT)
+        val username = intent.getStringExtra(EXTRA_INTENT)
 
-        //dataShowUser(userIntent)
+        username?.let { viewModel.setDetailUser(it) }
+
+        viewModel.getDetailUser().observe(this, {users ->
+            if (username == users.username) {
+                if (users != null) {
+                    dataShowUser(users)
+                }
+            }
+        })
+        //
 
 
     }
@@ -48,19 +59,19 @@ class UserDetailActivity : AppCompatActivity() {
         return true
     }
 
-    private fun dataShowUser(user: User?) {
+    private fun dataShowUser(users: UserDetailResponse?) {
 
-        binding.tvName.text = user?.name
-        binding.tvFollowers.text = user?.follower.toString()
-        binding.tvFollowing.text = user?.following.toString()
-        binding.tvRepository.text = user?.repository.toString()
-        binding.tvCompany.text = user?.company
-        binding.tvLocation.text = user?.location
-        binding.tvUsername.text = this.resources.getString(R.string.name_user, user?.username)
+        binding.tvName.text = users?.name
+        binding.tvFollowers.text = users?.follower.toString()
+        binding.tvFollowing.text = users?.following.toString()
+        binding.tvRepository.text = users?.repository.toString()
+        binding.tvCompany.text = users?.company
+        binding.tvLocation.text = users?.location
+        binding.tvUsername.text = this.resources.getString(R.string.name_user, users?.username)
 
 
         Glide.with(this)
-            .load(user?.avatar)
+            .load(users?.avatar)
             .apply(RequestOptions.placeholderOf(R.drawable.ic_loading))
             .error(R.drawable.ic_error)
             .into(binding.imagePhoto)

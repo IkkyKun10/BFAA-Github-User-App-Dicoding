@@ -5,8 +5,8 @@ import com.google.gson.annotations.SerializedName
 //import kotlinx.parcelize.Parcelize
 
 
-//@Parcelize
-data class User (
+
+data class UserDetailResponse (
     @SerializedName("id")
     val userId: Int,
 
@@ -17,7 +17,7 @@ data class User (
     val name: String,
 
     @SerializedName("avatar_url")
-    val avatar: Int,
+    val avatar: String,
 
     @SerializedName("company")
     val company: String,
@@ -34,4 +34,3 @@ data class User (
     @SerializedName("following")
     val following: Int
     )
-    //: Parcelable

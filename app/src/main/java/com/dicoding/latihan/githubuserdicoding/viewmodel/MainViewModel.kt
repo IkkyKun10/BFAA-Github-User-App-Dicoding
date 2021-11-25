@@ -67,7 +67,7 @@ class MainViewModel : ViewModel() {
         })
     }
 
-    fun getUser() : LiveData<ArrayList<UserSearch>> {
+    fun getSearchUser() : LiveData<ArrayList<UserSearch>> {
         return listUsers
     }
 

@@ -8,15 +8,18 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.dicoding.latihan.githubuserdicoding.R
 import com.dicoding.latihan.githubuserdicoding.databinding.ItemUserGithubBinding
-import com.dicoding.latihan.githubuserdicoding.raw.User
+import com.dicoding.latihan.githubuserdicoding.raw.UserDetailResponse
 import com.dicoding.latihan.githubuserdicoding.raw.UserSearch
 
-class UserAdapter : RecyclerView.Adapter<UserAdapter.UserViewHolder>() {
+class UserAdapter(private var callback: ShareCallback) : RecyclerView.Adapter<UserAdapter.UserViewHolder>() {
 
-    //private val callback: ShareCallback
+    private var onItemClickCallback: OnItemClickCallback? = null
+
+    fun setItemClickCallback(onItemClickCallback: OnItemClickCallback) {
+        this.onItemClickCallback = onItemClickCallback
+    }
 
     private val listUser = ArrayList<UserSearch>()
-    private val listCallback = ArrayList<User>()
 
     fun setList(users: ArrayList<UserSearch>) {
         this.listUser.clear()
@@ -24,12 +27,12 @@ class UserAdapter : RecyclerView.Adapter<UserAdapter.UserViewHolder>() {
         notifyDataSetChanged()
     }
 
-    fun listMain(user: UserSearch) {
-
-    }
-
     inner class UserViewHolder(private val binding: ItemUserGithubBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(user: UserSearch){
+
+            binding.root.setOnClickListener {
+                onItemClickCallback?.onItemClick(user)
+            }
 
             with(binding){
                 tvItemName.text = user.username
@@ -37,6 +40,7 @@ class UserAdapter : RecyclerView.Adapter<UserAdapter.UserViewHolder>() {
                 tvItemUrl.text = user.htmlUrl
                 tvItemType.text = user.type
 
+                imgshare.setOnClickListener { callback.onShareClick(user) }
 
                 Glide.with(itemView)
                     .load(user.avatar)
@@ -44,17 +48,19 @@ class UserAdapter : RecyclerView.Adapter<UserAdapter.UserViewHolder>() {
                     .error(R.drawable.ic_error)
                     .into(imgItemUser)
             }
+//            itemView.setOnClickListener { callback.onNavDetail(user) }
+
 
             Log.e("User Adapter", "Checking: ${user.username}")
 
         }
 
-        fun clickCallback(user: User) {
-
-            //itemView.setOnClickListener { callback.onNavDetail(user) }
-
-            //imgshare.setOnClickListener { callback.onShareClick(user) }
-        }
+//        fun clickCallback(userDetailResponse: UserDetailResponse) {
+//
+//            itemView.setOnClickListener { callback.onNavDetail(user) }
+//
+//            imgshare.setOnClickListener { callback.onShareClick(user) }
+//        }
 
     }
 
@@ -71,4 +77,8 @@ class UserAdapter : RecyclerView.Adapter<UserAdapter.UserViewHolder>() {
     override fun getItemCount(): Int = listUser.size
 
 
+    interface OnItemClickCallback {
+        fun onItemClick(data: UserSearch)
+    }
 }
+

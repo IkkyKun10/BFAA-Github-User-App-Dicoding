@@ -49,6 +49,8 @@ class UserDetailActivity : AppCompatActivity() {
                 }
             }
         })
+
+        sectionPagerAdapter.username = username
         //
 
 

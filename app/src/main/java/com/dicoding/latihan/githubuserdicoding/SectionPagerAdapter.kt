@@ -5,10 +5,12 @@ import androidx.annotation.StringRes
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
-import com.dicoding.latihan.githubuserdicoding.detail.follow.FollowesFragment
+import com.dicoding.latihan.githubuserdicoding.detail.follow.FollowersFragment
 import com.dicoding.latihan.githubuserdicoding.detail.follow.FollowingFragment
 
 class SectionPagerAdapter(private val mContext: Context, fm: FragmentManager) : FragmentPagerAdapter(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
+
+    var username: String? = null
 
     companion object{
         @StringRes
@@ -20,8 +22,8 @@ class SectionPagerAdapter(private val mContext: Context, fm: FragmentManager) : 
     override fun getItem(position: Int): Fragment {
         var fragment: Fragment? = null
         when (position) {
-            0 -> fragment = FollowesFragment()
-            1 -> fragment = FollowingFragment()
+            0 -> fragment = FollowersFragment.newInstanse(username)
+            1 -> fragment = FollowingFragment.newInstanse(username)
         }
         return fragment as Fragment
     }

@@ -1,5 +1,6 @@
 package com.dicoding.latihan.githubuserdicoding.detail.follow
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
@@ -7,11 +8,14 @@ import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.dicoding.latihan.githubuserdicoding.R
 import com.dicoding.latihan.githubuserdicoding.databinding.FragmentFollowBinding
+import com.dicoding.latihan.githubuserdicoding.detail.UserDetailActivity
+import com.dicoding.latihan.githubuserdicoding.raw.UserSearch
+import com.dicoding.latihan.githubuserdicoding.viewmodel.FollowingViewModel
 
 class FollowingFragment : Fragment(R.layout.fragment_follow) {
 
     companion object {
-        private val ARGS_NAME = "username"
+        private const val ARGS_NAME = "username"
 
         fun newInstanse(username: String?) : FollowingFragment {
             val fragment = FollowingFragment()
@@ -44,6 +48,20 @@ class FollowingFragment : Fragment(R.layout.fragment_follow) {
                 mAdapter.setList(items)
                 showLoading(false)
             }
+            val item = items.isEmpty()
+            if (item) {
+                binding?.frameError?.visibility = View.VISIBLE
+            }
+        })
+
+        mAdapter.setOnItemClickCallback(object : FollowAdapter.OnItemClickCallback {
+            override fun onItemClick(data: UserSearch) {
+                Intent(requireActivity(), UserDetailActivity::class.java).also {
+                    it.putExtra(UserDetailActivity.EXTRA_INTENT, data.username)
+                    startActivity(it)
+                }
+            }
+
         })
 
     }

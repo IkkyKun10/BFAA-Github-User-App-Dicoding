@@ -52,10 +52,12 @@ class MainActivity : AppCompatActivity(), ShareCallback {
             if (users != null) {
                 userAdapter.setList(users)
                 showLoading(false)
-            } else {
-                showLoading(false)
-                binding.frameError.visibility = View.VISIBLE
             }
+        })
+
+        viewModel.noData.observe(this, {
+            showNoData(it)
+            showLoading(false)
         })
 
         /**
@@ -129,6 +131,14 @@ class MainActivity : AppCompatActivity(), ShareCallback {
             binding.progressBar.visibility = View.VISIBLE
         } else {
             binding.progressBar.visibility = View.GONE
+        }
+    }
+
+    private fun showNoData(state: Boolean) {
+        if (state) {
+            binding.frameError.visibility = View.VISIBLE
+        } else {
+            binding.frameError.visibility = View.GONE
         }
     }
 }

@@ -10,6 +10,7 @@ import com.dicoding.latihan.githubuserdicoding.R
 import com.dicoding.latihan.githubuserdicoding.SectionPagerAdapter
 import com.dicoding.latihan.githubuserdicoding.databinding.ActivityUserDetailBinding
 import com.dicoding.latihan.githubuserdicoding.raw.UserDetailResponse
+import com.dicoding.latihan.githubuserdicoding.viewmodel.DetailViewModel
 
 class UserDetailActivity : AppCompatActivity() {
 

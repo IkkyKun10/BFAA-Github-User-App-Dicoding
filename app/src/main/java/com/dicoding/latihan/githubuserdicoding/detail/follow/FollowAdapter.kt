@@ -11,6 +11,12 @@ import com.dicoding.latihan.githubuserdicoding.raw.UserSearch
 
 class FollowAdapter : RecyclerView.Adapter<FollowAdapter.FollowViewHolder>() {
 
+    private var onItemClickCallback: OnItemClickCallback? = null
+
+    fun setOnItemClickCallback(onItemClickCallback: OnItemClickCallback) {
+        this.onItemClickCallback = onItemClickCallback
+    }
+
     private val listFollow = ArrayList<UserSearch>()
 
     fun setList(users: ArrayList<UserSearch>) {
@@ -21,6 +27,11 @@ class FollowAdapter : RecyclerView.Adapter<FollowAdapter.FollowViewHolder>() {
 
     inner class FollowViewHolder(private val binding: ItemFollowBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(users: UserSearch) {
+
+            binding.root.setOnClickListener {
+                onItemClickCallback?.onItemClick(users)
+            }
+
             with(binding) {
                 binding.tvFollowName.text = users.username
                 binding.tvFollowId.text = users.userId.toString()
@@ -45,4 +56,8 @@ class FollowAdapter : RecyclerView.Adapter<FollowAdapter.FollowViewHolder>() {
 
     override fun getItemCount(): Int = listFollow.size
 
+
+    interface OnItemClickCallback {
+        fun onItemClick(data: UserSearch)
+    }
 }

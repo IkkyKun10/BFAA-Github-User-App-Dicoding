@@ -27,7 +27,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_gravity="center"
-                    android:background="@color/primary"
+                    android:background="@drawable/drawable_gradient_purple"
                     android:gravity="center"
                     android:orientation="vertical"
                     app:layout_collapseMode="parallax">
@@ -156,7 +156,7 @@
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="Repository"
+                                    android:text="@string/repository"
                                     android:textColor="@android:color/black"
                                     android:textSize="15sp"
                                     tools:ignore="HardcodedText" />
@@ -187,6 +187,7 @@
             android:id="@+id/tabsLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@color/primary"
             app:tabBackground="@drawable/tab_layout_selector"
             app:tabIndicatorColor="@android:color/holo_purple"
             app:tabSelectedTextColor="@color/primary"

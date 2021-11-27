@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<selector xmlns:android="http://schemas.android.com/apk/res/android">
+<selector xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    tools:ignore="ExtraText">
 
     <item android:drawable="@drawable/background_tab_selected"
         android:state_selected="true" />
 
+    //digunakan untuk tampilan tab yang tidak terpilih
     <item android:drawable="@color/primary"
         android:state_selected="false" />
 

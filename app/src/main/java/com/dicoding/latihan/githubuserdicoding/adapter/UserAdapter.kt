@@ -8,7 +8,6 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.dicoding.latihan.githubuserdicoding.R
 import com.dicoding.latihan.githubuserdicoding.databinding.ItemUserGithubBinding
-import com.dicoding.latihan.githubuserdicoding.raw.UserDetailResponse
 import com.dicoding.latihan.githubuserdicoding.raw.UserSearch
 
 class UserAdapter(private var callback: ShareCallback) : RecyclerView.Adapter<UserAdapter.UserViewHolder>() {

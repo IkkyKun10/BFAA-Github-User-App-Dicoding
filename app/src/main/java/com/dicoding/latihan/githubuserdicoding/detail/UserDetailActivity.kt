@@ -3,6 +3,7 @@ package com.dicoding.latihan.githubuserdicoding.detail
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
+import android.view.View
 import androidx.activity.viewModels
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
@@ -41,19 +42,20 @@ class UserDetailActivity : AppCompatActivity() {
 
         val username = intent.getStringExtra(EXTRA_INTENT)
 
+        showLoading(true)
         username?.let { viewModel.setDetailUser(it) }
 
         viewModel.getDetailUser().observe(this, {users ->
             if (username == users.username) {
                 if (users != null) {
                     dataShowUser(users)
+                    showLoading(false)
                 }
             }
         })
 
         sectionPagerAdapter.username = username
         //
-
 
     }
 
@@ -78,6 +80,14 @@ class UserDetailActivity : AppCompatActivity() {
             .apply(RequestOptions.placeholderOf(R.drawable.ic_loading))
             .error(R.drawable.ic_error)
             .into(binding.imagePhoto)
+    }
+
+    private fun showLoading(isLoading: Boolean) {
+        if (isLoading){
+            binding.progressBar.visibility = View.VISIBLE
+        } else {
+            binding.progressBar.visibility = View.GONE
+        }
     }
 
 

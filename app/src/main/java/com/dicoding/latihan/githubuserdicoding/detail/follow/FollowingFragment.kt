@@ -14,19 +14,6 @@ import com.dicoding.latihan.githubuserdicoding.viewmodel.FollowingViewModel
 
 class FollowingFragment : Fragment(R.layout.fragment_follow) {
 
-    companion object {
-        private const val ARGS_NAME = "username"
-
-        fun newInstanse(username: String?) : FollowingFragment {
-            val fragment = FollowingFragment()
-            val mBundle = Bundle()
-            mBundle.putString(ARGS_NAME, username)
-            fragment.arguments = mBundle
-
-            return fragment
-        }
-    }
-
     private var _binding : FragmentFollowBinding? = null
     private val binding get() = _binding
     private val viewModel by viewModels<FollowingViewModel>()
@@ -83,5 +70,19 @@ class FollowingFragment : Fragment(R.layout.fragment_follow) {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+
+    companion object {
+        private const val ARGS_NAME = "username"
+
+        fun newInstanse(username: String?) : FollowingFragment {
+            val fragment = FollowingFragment()
+            val mBundle = Bundle()
+            mBundle.putString(ARGS_NAME, username)
+            fragment.arguments = mBundle
+
+            return fragment
+        }
     }
 }

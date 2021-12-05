@@ -47,7 +47,8 @@
                 android:layout_width="250dp"
                 android:layout_height="250dp"
                 android:layout_gravity="center_horizontal"
-                android:src="@drawable/ic_no_data"/>
+                android:src="@drawable/ic_no_data"
+                android:contentDescription="@string/no_follow"/>
 
             <TextView
                 android:layout_width="match_parent"

@@ -13,10 +13,6 @@ import retrofit2.Response
 
 class MainViewModel : ViewModel() {
 
-    companion object {
-        private const val TAG = "MainViewModel"
-    }
-
     private val listUsers = MutableLiveData<ArrayList<UserSearch>>()
 
     val listMainUsers : LiveData<ArrayList<UserSearch>> = listUsers
@@ -80,4 +76,8 @@ class MainViewModel : ViewModel() {
         return listUsers
     }
 
+
+    companion object {
+        private const val TAG = "MainViewModel"
+    }
 }

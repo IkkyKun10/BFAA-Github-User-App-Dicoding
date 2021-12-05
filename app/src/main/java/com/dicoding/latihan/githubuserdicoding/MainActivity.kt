@@ -36,7 +36,7 @@ class MainActivity : AppCompatActivity(), ShareCallback {
 
         }
 
-        binding.edQuery.setOnKeyListener { view, keyCode, keyEvent ->
+        binding.edQuery.setOnKeyListener { _, keyCode, keyEvent ->
             if (keyEvent.action == KeyEvent.ACTION_DOWN && keyCode == KeyEvent.KEYCODE_ENTER) {
                 searchUser()
                 return@setOnKeyListener true
@@ -52,6 +52,10 @@ class MainActivity : AppCompatActivity(), ShareCallback {
             if (users != null) {
                 userAdapter.setList(users)
                 showLoading(false)
+            }
+            val item = users.isEmpty()
+            if (item) {
+                binding.frameError.visibility = View.VISIBLE
             }
         })
 

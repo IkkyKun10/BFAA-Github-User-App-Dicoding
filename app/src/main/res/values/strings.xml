@@ -17,4 +17,7 @@
     <string name="alamat_url">alamat url</string>
     <string name="no_follow">tidak punya pengikut</string>
     <string name="search">Search</string>
+    <string name="favorite">Favorite</string>
+    <string name="setting">Setting</string>
+    <string name="next">Selanjutnya</string>
 </resources>

@@ -1,7 +1,10 @@
 package com.dicoding.latihan.githubuserdicoding.raw
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.parcelize.Parcelize
 
+@Parcelize
 data class UserSearch(
     @SerializedName("login")
     val username: String,
@@ -18,4 +21,4 @@ data class UserSearch(
     @SerializedName("html_url")
     val htmlUrl: String,
 
-)
+) : Parcelable

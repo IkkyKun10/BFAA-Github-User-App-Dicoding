@@ -11,12 +11,19 @@ import com.dicoding.latihan.githubuserdicoding.R
 import com.dicoding.latihan.githubuserdicoding.SectionPagerAdapter
 import com.dicoding.latihan.githubuserdicoding.databinding.ActivityUserDetailBinding
 import com.dicoding.latihan.githubuserdicoding.raw.UserDetailResponse
+import com.dicoding.latihan.githubuserdicoding.raw.UserSearch
+import com.dicoding.latihan.githubuserdicoding.raw.local.UserFavorite
 import com.dicoding.latihan.githubuserdicoding.viewmodel.DetailViewModel
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class UserDetailActivity : AppCompatActivity() {
 
     companion object {
         const val EXTRA_INTENT = "extra_intent"
+        const val EXTRA_USERS = "extra_users"
     }
 
     private lateinit var binding: ActivityUserDetailBinding
@@ -41,6 +48,7 @@ class UserDetailActivity : AppCompatActivity() {
         //binding.toolbar.setNavigationOnClickListener{onBackPressed()}
 
         val username = intent.getStringExtra(EXTRA_INTENT)
+        val userIntent = intent.getParcelableExtra<UserSearch>(EXTRA_USERS)
 
         showLoading(true)
         username?.let { viewModel.setDetailUser(it) }
@@ -57,6 +65,47 @@ class UserDetailActivity : AppCompatActivity() {
         sectionPagerAdapter.username = username
         //
 
+        var isChecked = false
+        CoroutineScope(Dispatchers.IO).launch {
+            val count = userIntent?.let { viewModel.checkUser(it.userId) }
+            withContext(Dispatchers.Main){
+                if (count != null){
+                    if (count > 0){
+                        isChecked = true
+                        stateFavorite(isChecked)
+                    } else {
+                        isChecked = false
+                        stateFavorite(isChecked)
+                    }
+                }
+            }
+        }
+
+        binding.fabFav.setOnClickListener {
+            isChecked = !isChecked
+            if (isChecked) {
+                userIntent?.let { user ->
+                    viewModel.insertFavorite(
+                        user.userId,
+                        user.username,
+                        user.avatar,
+                        user.type,
+                        user.htmlUrl) }
+            } else {
+                userIntent?.userId?.let { user -> viewModel.deleteById(user) }
+            }
+            //binding.fabFav.isClickable = _isChecked
+            stateFavorite(isChecked)
+        }
+
+    }
+
+    private fun stateFavorite(state: Boolean) {
+        if (state) {
+            binding.fabFav.setImageResource(R.drawable.ic_favorite_pink)
+        } else {
+            binding.fabFav.setImageResource(R.drawable.ic_favorite_grey)
+        }
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -80,6 +129,11 @@ class UserDetailActivity : AppCompatActivity() {
             .apply(RequestOptions.placeholderOf(R.drawable.ic_loading))
             .error(R.drawable.ic_error)
             .into(binding.imagePhoto)
+    }
+
+
+    private fun addRemoveFav(users: UserFavorite) {
+
     }
 
     private fun showLoading(isLoading: Boolean) {

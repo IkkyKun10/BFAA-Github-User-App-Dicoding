@@ -209,5 +209,20 @@
         android:layout_gravity="center"
         android:visibility="invisible"/>
 
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_fav"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:foregroundGravity="bottom"
+        app:fabSize="normal"
+        app:layout_anchor="@id/viewPager"
+        app:layout_anchorGravity="bottom|end"
+        android:elevation="6dp"
+        android:src="@drawable/ic_favorite_grey"
+        app:tint="@null"
+        tools:ignore="RelativeOverlap"
+        android:contentDescription="@string/favorite"/>
+
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -4,6 +4,8 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.KeyEvent
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import androidx.activity.viewModels
 import androidx.core.app.ShareCompat
@@ -12,6 +14,7 @@ import com.dicoding.latihan.githubuserdicoding.adapter.ShareCallback
 import com.dicoding.latihan.githubuserdicoding.adapter.UserAdapter
 import com.dicoding.latihan.githubuserdicoding.databinding.ActivityMainBinding
 import com.dicoding.latihan.githubuserdicoding.detail.UserDetailActivity
+import com.dicoding.latihan.githubuserdicoding.favorite.FavoriteActivity
 import com.dicoding.latihan.githubuserdicoding.raw.UserSearch
 import com.dicoding.latihan.githubuserdicoding.viewmodel.MainViewModel
 
@@ -120,10 +123,27 @@ class MainActivity : AppCompatActivity(), ShareCallback {
         }
     }
 
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_options, menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.fav_button -> {
+                val intent = Intent(this, FavoriteActivity::class.java)
+                startActivity(intent)
+            }
+        }
+
+        return super.onOptionsItemSelected(item)
+    }
+
 
     override fun onNavDetail(users: UserSearch) {
         val intent = Intent(this, UserDetailActivity::class.java)
         intent.putExtra(UserDetailActivity.EXTRA_INTENT, users.username)
+        intent.putExtra(UserDetailActivity.EXTRA_USERS, users)
         startActivity(intent)
 
     }

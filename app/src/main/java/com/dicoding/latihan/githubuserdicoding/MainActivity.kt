@@ -14,7 +14,8 @@ import com.dicoding.latihan.githubuserdicoding.adapter.ShareCallback
 import com.dicoding.latihan.githubuserdicoding.adapter.UserAdapter
 import com.dicoding.latihan.githubuserdicoding.databinding.ActivityMainBinding
 import com.dicoding.latihan.githubuserdicoding.detail.UserDetailActivity
-import com.dicoding.latihan.githubuserdicoding.favorite.FavoriteActivity
+import com.dicoding.latihan.githubuserdicoding.appbar.favorite.FavoriteActivity
+import com.dicoding.latihan.githubuserdicoding.appbar.settings.SettingThemeActivity
 import com.dicoding.latihan.githubuserdicoding.raw.UserSearch
 import com.dicoding.latihan.githubuserdicoding.viewmodel.MainViewModel
 
@@ -132,6 +133,10 @@ class MainActivity : AppCompatActivity(), ShareCallback {
         when (item.itemId) {
             R.id.fav_button -> {
                 val intent = Intent(this, FavoriteActivity::class.java)
+                startActivity(intent)
+            }
+            R.id.setting_button -> {
+                val intent = Intent(this, SettingThemeActivity::class.java)
                 startActivity(intent)
             }
         }

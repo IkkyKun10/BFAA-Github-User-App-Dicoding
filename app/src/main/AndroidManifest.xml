@@ -12,7 +12,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.GithubUserDicoding">
         <activity
-            android:name=".favorite.FavoriteActivity"
+            android:name=".appbar.settings.SettingThemeActivity"
+            android:exported="false" />
+        <activity
+            android:name=".appbar.favorite.FavoriteActivity"
             android:exported="false" />
         <activity
             android:name=".detail.UserDetailActivity"

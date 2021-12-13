@@ -1,4 +1,4 @@
-package com.dicoding.latihan.githubuserdicoding.favorite
+package com.dicoding.latihan.githubuserdicoding.appbar.favorite
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -8,7 +8,6 @@ import com.bumptech.glide.request.RequestOptions
 import com.dicoding.latihan.githubuserdicoding.R
 import com.dicoding.latihan.githubuserdicoding.databinding.ItemFavoriteBinding
 import com.dicoding.latihan.githubuserdicoding.raw.UserSearch
-import com.dicoding.latihan.githubuserdicoding.raw.local.UserFavorite
 
 class FavoriteAdapter : RecyclerView.Adapter<FavoriteAdapter.FavoriteViewHolder>() {
 

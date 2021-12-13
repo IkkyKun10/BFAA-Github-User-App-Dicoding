@@ -1,4 +1,4 @@
-package com.dicoding.latihan.githubuserdicoding.favorite
+package com.dicoding.latihan.githubuserdicoding.appbar.favorite
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity

@@ -3,8 +3,12 @@ package com.dicoding.latihan.githubuserdicoding.appbar.favorite
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import androidx.activity.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.dicoding.latihan.githubuserdicoding.R
+import com.dicoding.latihan.githubuserdicoding.appbar.settings.SettingThemeActivity
 import com.dicoding.latihan.githubuserdicoding.databinding.ActivityFavoriteBinding
 import com.dicoding.latihan.githubuserdicoding.detail.UserDetailActivity
 import com.dicoding.latihan.githubuserdicoding.raw.UserSearch
@@ -44,6 +48,21 @@ class FavoriteActivity : AppCompatActivity() {
             }
         })
 
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_fav, menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId)  {
+            R.id.settings -> {
+                val intent = Intent(this@FavoriteActivity, SettingThemeActivity::class.java)
+                startActivity(intent)
+            }
+        }
+        return true
     }
 
     private fun showRecycler() {

@@ -38,6 +38,7 @@
             card_view:layout_constraintBottom_toBottomOf="@id/tv_fav_id"
             card_view:layout_constraintEnd_toEndOf="parent"
             android:textStyle="bold"
+            android:textColor="@android:color/black"
             android:textSize="18sp"
             tools:text="@string/user_name"/>
 
@@ -51,6 +52,7 @@
             card_view:layout_constraintBottom_toBottomOf="@id/img_item_fav"
             android:layout_marginStart="8dp"
             android:textStyle="bold"
+            android:textColor="@android:color/holo_blue_light"
             android:textSize="14sp"
             tools:text="id_user"/>
 
@@ -62,6 +64,7 @@
             android:textStyle="normal"
             android:layout_marginStart="8dp"
             android:textSize="14sp"
+            android:textColor="@android:color/black"
             card_view:layout_constraintStart_toEndOf="@id/img_item_fav"
             card_view:layout_constraintEnd_toEndOf="parent"
             card_view:layout_constraintTop_toBottomOf="@id/tv_fav_id" />

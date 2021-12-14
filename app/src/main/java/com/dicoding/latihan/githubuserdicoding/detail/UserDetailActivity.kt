@@ -1,14 +1,18 @@
 package com.dicoding.latihan.githubuserdicoding.detail
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import android.widget.Toast
 import androidx.activity.viewModels
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.dicoding.latihan.githubuserdicoding.R
 import com.dicoding.latihan.githubuserdicoding.SectionPagerAdapter
+import com.dicoding.latihan.githubuserdicoding.appbar.settings.SettingThemeActivity
 import com.dicoding.latihan.githubuserdicoding.databinding.ActivityUserDetailBinding
 import com.dicoding.latihan.githubuserdicoding.raw.UserDetailResponse
 import com.dicoding.latihan.githubuserdicoding.raw.UserSearch
@@ -43,7 +47,7 @@ class UserDetailActivity : AppCompatActivity() {
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.title = ""
-        supportActionBar?.setDisplayShowHomeEnabled(true)
+        //supportActionBar?.setDisplayShowHomeEnabled(true)
 
         //binding.toolbar.setNavigationOnClickListener{onBackPressed()}
 
@@ -91,10 +95,11 @@ class UserDetailActivity : AppCompatActivity() {
                         user.avatar,
                         user.type,
                         user.htmlUrl) }
+                Toast.makeText(this, "Berhasil Favoritkan " + userIntent?.username, Toast.LENGTH_SHORT).show()
             } else {
                 userIntent?.userId?.let { user -> viewModel.deleteById(user) }
+                Toast.makeText(this, "Berhasil Menghapus ${userIntent?.username} Sebagai Favorite", Toast.LENGTH_SHORT).show()
             }
-            //binding.fabFav.isClickable = _isChecked
             stateFavorite(isChecked)
         }
 
@@ -108,7 +113,16 @@ class UserDetailActivity : AppCompatActivity() {
         }
     }
 
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_setting, menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (item.itemId == R.id.settings) {
+            val intent = Intent(this@UserDetailActivity, SettingThemeActivity::class.java)
+            startActivity(intent)
+        }
         finish()
         return true
     }
@@ -132,7 +146,7 @@ class UserDetailActivity : AppCompatActivity() {
     }
 
 
-    private fun addRemoveFav(users: UserFavorite) {
+    private fun addRemoveFav(userIntent: UserSearch) {
 
     }
 

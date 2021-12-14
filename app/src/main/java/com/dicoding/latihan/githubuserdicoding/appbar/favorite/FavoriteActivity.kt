@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import androidx.activity.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.dicoding.latihan.githubuserdicoding.R
@@ -27,6 +28,8 @@ class FavoriteActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         supportActionBar?.title = "Favorite User Github"
+        //supportActionBar?.setDisplayShowHomeEnabled(true)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         showRecycler()
 
@@ -46,12 +49,16 @@ class FavoriteActivity : AppCompatActivity() {
                 val list = mapList(users)
                 adapter.setList(list)
             }
+            val item = users.isEmpty()
+            if (item) {
+                binding.empty.visibility = View.VISIBLE
+            }
         })
 
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.menu_fav, menu)
+        menuInflater.inflate(R.menu.menu_setting, menu)
         return super.onCreateOptionsMenu(menu)
     }
 
@@ -60,6 +67,9 @@ class FavoriteActivity : AppCompatActivity() {
             R.id.settings -> {
                 val intent = Intent(this@FavoriteActivity, SettingThemeActivity::class.java)
                 startActivity(intent)
+            }
+            android.R.id.home -> {
+                onBackPressed()
             }
         }
         return true

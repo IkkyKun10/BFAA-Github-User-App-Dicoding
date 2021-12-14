@@ -13,7 +13,7 @@
     <string name="githubicon">githubicon</string>
     <string name="name_user">"@%s"</string>
     <string name="Mencari">Search</string>
-    <string name="account_not_load">Silahkan isi Kuota</string>
+    <string name="account_not_load">Akun tidak ditemukan</string>
     <string name="alamat_url">alamat url</string>
     <string name="no_follow">tidak punya pengikut</string>
     <string name="search">Search</string>
@@ -21,4 +21,5 @@
     <string name="setting">Setting</string>
     <string name="next">Selanjutnya</string>
     <string name="dark_theme">Dark Theme</string>
+    <string name="empty_favorite">Tidak ada Favorite</string>
 </resources>

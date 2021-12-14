@@ -6,6 +6,7 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.dicoding.latihan.githubuserdicoding.EspressoIdlingResource
 import com.dicoding.latihan.githubuserdicoding.api.ApiConfig
 import com.dicoding.latihan.githubuserdicoding.raw.UserDetailResponse
 import com.dicoding.latihan.githubuserdicoding.raw.local.UserFavorite
@@ -34,17 +35,21 @@ class DetailViewModel(application: Application) : AndroidViewModel(application) 
 
     fun setDetailUser(username: String) {
         val client = ApiConfig.apiInstance.geDetailUser(username)
+        EspressoIdlingResource.increment()
         client.enqueue(object : Callback<UserDetailResponse> {
             override fun onResponse(call: Call<UserDetailResponse>, response: Response<UserDetailResponse>) {
                 if (response.isSuccessful) {
                     user.postValue(response.body())
+                    EspressoIdlingResource.decrement()
                 } else {
                     Log.e(TAG, "Failure: ${response.message()}")
+                    EspressoIdlingResource.decrement()
                 }
             }
 
             override fun onFailure(call: Call<UserDetailResponse>, t: Throwable) {
                 Log.e(TAG, "Failure: ${t.message}")
+                EspressoIdlingResource.decrement()
             }
 
         })

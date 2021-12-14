@@ -9,7 +9,7 @@ import android.os.Looper
 class SplashScreenActivity : AppCompatActivity() {
 
     companion object {
-        private const val TIME_SECOND = 3000
+        private const val TIME_SECOND = 2000
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

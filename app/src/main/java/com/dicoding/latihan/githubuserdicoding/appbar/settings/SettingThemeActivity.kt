@@ -3,6 +3,7 @@ package com.dicoding.latihan.githubuserdicoding.appbar.settings
 import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.MenuItem
 import android.widget.CompoundButton
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.datastore.core.DataStore
@@ -23,6 +24,7 @@ class SettingThemeActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         supportActionBar?.title = "Setting"
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         val pref = SettingPreference.getInstance(dataStore)
         val viewModel = ViewModelProvider(this, ViewModelFactory(pref)).get(SettingViewModel::class.java)
@@ -41,5 +43,10 @@ class SettingThemeActivity : AppCompatActivity() {
         binding.switchDark.setOnCheckedChangeListener { _: CompoundButton, isChecked: Boolean ->
             viewModel.saveThemeSetting(isChecked)
         }
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        finish()
+        return super.onOptionsItemSelected(item)
     }
 }

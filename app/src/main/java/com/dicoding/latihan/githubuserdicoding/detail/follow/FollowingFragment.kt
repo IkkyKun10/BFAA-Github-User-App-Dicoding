@@ -45,6 +45,7 @@ class FollowingFragment : Fragment(R.layout.fragment_follow) {
             override fun onItemClick(data: UserSearch) {
                 Intent(requireActivity(), UserDetailActivity::class.java).also {
                     it.putExtra(UserDetailActivity.EXTRA_INTENT, data.username)
+                    it.putExtra(UserDetailActivity.EXTRA_USERS, data)
                     startActivity(it)
                 }
             }

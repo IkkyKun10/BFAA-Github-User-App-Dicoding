@@ -7,6 +7,7 @@ import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 import com.dicoding.latihan.githubuserdicoding.detail.follow.FollowersFragment
 import com.dicoding.latihan.githubuserdicoding.detail.follow.FollowingFragment
+import com.dicoding.latihan.githubuserdicoding.raw.UserSearch
 
 class SectionPagerAdapter(private val mContext: Context, fm: FragmentManager) : FragmentPagerAdapter(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
 

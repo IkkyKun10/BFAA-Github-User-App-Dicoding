@@ -32,6 +32,7 @@ class UserDetailActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityUserDetailBinding
     private val viewModel by viewModels<DetailViewModel>()
+    private var isChecked = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -68,40 +69,7 @@ class UserDetailActivity : AppCompatActivity() {
 
         sectionPagerAdapter.username = username
         //
-
-        var isChecked = false
-        CoroutineScope(Dispatchers.IO).launch {
-            val count = userIntent?.let { viewModel.checkUser(it.userId) }
-            withContext(Dispatchers.Main){
-                if (count != null){
-                    if (count > 0){
-                        isChecked = true
-                        stateFavorite(isChecked)
-                    } else {
-                        isChecked = false
-                        stateFavorite(isChecked)
-                    }
-                }
-            }
-        }
-
-        binding.fabFav.setOnClickListener {
-            isChecked = !isChecked
-            if (isChecked) {
-                userIntent?.let { user ->
-                    viewModel.insertFavorite(
-                        user.userId,
-                        user.username,
-                        user.avatar,
-                        user.type,
-                        user.htmlUrl) }
-                Toast.makeText(this, "Berhasil Favoritkan " + userIntent?.username, Toast.LENGTH_SHORT).show()
-            } else {
-                userIntent?.userId?.let { user -> viewModel.deleteById(user) }
-                Toast.makeText(this, "Berhasil Menghapus ${userIntent?.username} Sebagai Favorite", Toast.LENGTH_SHORT).show()
-            }
-            stateFavorite(isChecked)
-        }
+        addRemoveFav(userIntent)
 
     }
 
@@ -146,8 +114,39 @@ class UserDetailActivity : AppCompatActivity() {
     }
 
 
-    private fun addRemoveFav(userIntent: UserSearch) {
+    private fun addRemoveFav(userIntent: UserSearch?) {
+        CoroutineScope(Dispatchers.IO).launch {
+            val count = userIntent?.let { viewModel.checkUser(it.userId) }
+            withContext(Dispatchers.Main){
+                if (count != null){
+                    if (count > 0){
+                        isChecked = true
+                        stateFavorite(isChecked)
+                    } else {
+                        isChecked = false
+                        stateFavorite(isChecked)
+                    }
+                }
+            }
+        }
 
+        binding.fabFav.setOnClickListener {
+            isChecked = !isChecked
+            if (isChecked) {
+                userIntent?.let { user ->
+                    viewModel.insertFavorite(
+                        user.userId,
+                        user.username,
+                        user.avatar,
+                        user.type,
+                        user.htmlUrl) }
+                Toast.makeText(this, "Berhasil Favoritkan " + userIntent?.username, Toast.LENGTH_SHORT).show()
+            } else {
+                userIntent?.userId?.let { user -> viewModel.deleteById(user) }
+                Toast.makeText(this, "Berhasil Menghapus ${userIntent?.username} Sebagai Favorite", Toast.LENGTH_SHORT).show()
+            }
+            stateFavorite(isChecked)
+        }
     }
 
     private fun showLoading(isLoading: Boolean) {

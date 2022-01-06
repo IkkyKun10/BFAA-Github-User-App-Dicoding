@@ -16,7 +16,6 @@ import com.dicoding.latihan.githubuserdicoding.appbar.settings.SettingThemeActiv
 import com.dicoding.latihan.githubuserdicoding.databinding.ActivityUserDetailBinding
 import com.dicoding.latihan.githubuserdicoding.raw.UserDetailResponse
 import com.dicoding.latihan.githubuserdicoding.raw.UserSearch
-import com.dicoding.latihan.githubuserdicoding.raw.local.UserFavorite
 import com.dicoding.latihan.githubuserdicoding.viewmodel.DetailViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers

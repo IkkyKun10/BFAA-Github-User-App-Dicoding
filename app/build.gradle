@@ -20,6 +20,7 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        buildConfigField("String", "KEY", '"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"')
     }
 
     buildTypes {
@@ -60,7 +61,7 @@ dependencies {
     implementation 'de.hdodenhof:circleimageview:3.1.0'
     implementation 'com.github.ivbaranov:materialfavoritebutton:0.1.5'
     implementation 'com.airbnb.android:lottie:4.2.1'
-    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.4.1"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.0"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.0"
     implementation "androidx.test.espresso:espresso-idling-resource:3.4.0"
 

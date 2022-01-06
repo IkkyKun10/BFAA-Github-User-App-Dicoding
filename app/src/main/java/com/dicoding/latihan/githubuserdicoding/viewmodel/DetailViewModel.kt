@@ -5,7 +5,6 @@ import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import com.dicoding.latihan.githubuserdicoding.EspressoIdlingResource
 import com.dicoding.latihan.githubuserdicoding.api.ApiConfig
 import com.dicoding.latihan.githubuserdicoding.raw.UserDetailResponse

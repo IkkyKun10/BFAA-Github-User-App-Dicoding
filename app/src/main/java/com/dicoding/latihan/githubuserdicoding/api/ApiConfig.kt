@@ -1,6 +1,6 @@
 package com.dicoding.latihan.githubuserdicoding.api
 
-import com.dicoding.latihan.githubuserdicoding.BuildConfig
+import androidx.viewbinding.BuildConfig
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit

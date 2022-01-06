@@ -1,5 +1,6 @@
 package com.dicoding.latihan.githubuserdicoding
 
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -8,31 +9,60 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.app.ShareCompat
+import androidx.datastore.core.DataStore
+import androidx.datastore.preferences.core.Preferences
+import androidx.datastore.preferences.preferencesDataStore
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.dicoding.latihan.githubuserdicoding.adapter.ShareCallback
 import com.dicoding.latihan.githubuserdicoding.adapter.UserAdapter
 import com.dicoding.latihan.githubuserdicoding.databinding.ActivityMainBinding
 import com.dicoding.latihan.githubuserdicoding.detail.UserDetailActivity
 import com.dicoding.latihan.githubuserdicoding.appbar.favorite.FavoriteActivity
+import com.dicoding.latihan.githubuserdicoding.appbar.settings.SettingPreference
 import com.dicoding.latihan.githubuserdicoding.appbar.settings.SettingThemeActivity
+import com.dicoding.latihan.githubuserdicoding.appbar.settings.SettingViewModel
+import com.dicoding.latihan.githubuserdicoding.appbar.settings.ViewModelFactory
 import com.dicoding.latihan.githubuserdicoding.raw.UserSearch
 import com.dicoding.latihan.githubuserdicoding.viewmodel.MainViewModel
 
+private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "settings")
 class MainActivity : AppCompatActivity(), ShareCallback {
 
     private lateinit var binding: ActivityMainBinding
     //private lateinit var viewModel : MainViewModel
     private lateinit var userAdapter: UserAdapter
     private val viewModel by viewModels<MainViewModel>()
+    private lateinit var settingViewModel: SettingViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        val pref = SettingPreference.getInstance(dataStore)
+        settingViewModel = ViewModelProvider(this, ViewModelFactory(pref)).get(SettingViewModel::class.java)
 
-        //viewModel = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory()).get(MainViewModel::class.java)
+        settingViewModel.getThemeSetting().observe(this, {isDarkModeActive ->
+            if (isDarkModeActive) {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+            } else {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+            }
+        })
+
+        //viewModel = ViewModelProvider(this, ViewModelFactory(pref)).get(MainViewModel::class.java)
+
+//        viewModel.getThemeSetting().observe(this, {isDarkModeActive ->
+//            if (isDarkModeActive) {
+//                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+//            } else {
+//                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+//            }
+//        })
+
         getMainUser()
 
         binding.btnSearch.setOnClickListener {

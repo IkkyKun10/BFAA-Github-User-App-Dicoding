@@ -4,6 +4,9 @@ plugins {
     id 'kotlin-parcelize'
     id 'kotlin-kapt'
 }
+def localPropertiesFile = rootProject.file("local.properties")
+def localProperties = new Properties()
+localProperties.load(new FileInputStream(localPropertiesFile))
 
 android {
     compileSdk 31
@@ -20,7 +23,7 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-        buildConfigField("String", "KEY", '"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"')
+        buildConfigField("String", "KEY", localProperties['superKey'])
     }
 
     buildTypes {

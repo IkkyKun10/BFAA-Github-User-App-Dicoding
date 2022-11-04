@@ -1,5 +1,6 @@
 package com.dicoding.latihan.githubuserdicoding.detail.follow
 
+
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
@@ -29,8 +30,10 @@ class FollowersFragment : Fragment(R.layout.fragment_follow) {
         showRecycler()
 
         showLoading(true)
-        username?.let { viewModel.setFollowersList(it) }
-        viewModel.getFollowersList().observe(viewLifecycleOwner, {items ->
+        if (username != null) {
+            viewModel.setFollowersList(username)
+        }
+        viewModel.getFollowersList().observe(viewLifecycleOwner) { items ->
             if (items != null) {
                 mAdapter.setList(items)
                 showLoading(false)
@@ -39,7 +42,7 @@ class FollowersFragment : Fragment(R.layout.fragment_follow) {
             if (item) {
                 binding?.frameError?.visibility = View.VISIBLE
             }
-        })
+        }
 
         mAdapter.setOnItemClickCallback(object : FollowAdapter.OnItemClickCallback {
             override fun onItemClick(data: UserSearch) {

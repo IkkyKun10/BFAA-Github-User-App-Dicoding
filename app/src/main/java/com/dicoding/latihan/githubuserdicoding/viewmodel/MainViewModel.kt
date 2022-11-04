@@ -4,10 +4,8 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.asLiveData
 import com.dicoding.latihan.githubuserdicoding.EspressoIdlingResource
 import com.dicoding.latihan.githubuserdicoding.api.ApiConfig
-import com.dicoding.latihan.githubuserdicoding.appbar.settings.SettingPreference
 import com.dicoding.latihan.githubuserdicoding.raw.UserResponse
 import com.dicoding.latihan.githubuserdicoding.raw.UserSearch
 import retrofit2.Call

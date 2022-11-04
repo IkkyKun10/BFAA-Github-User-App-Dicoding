@@ -2,33 +2,32 @@ package com.dicoding.latihan.githubuserdicoding
 
 import android.content.Context
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.KeyEvent
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.app.ShareCompat
 import androidx.datastore.core.DataStore
-import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.preferencesDataStore
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.dicoding.latihan.githubuserdicoding.adapter.ShareCallback
 import com.dicoding.latihan.githubuserdicoding.adapter.UserAdapter
-import com.dicoding.latihan.githubuserdicoding.databinding.ActivityMainBinding
-import com.dicoding.latihan.githubuserdicoding.detail.UserDetailActivity
 import com.dicoding.latihan.githubuserdicoding.appbar.favorite.FavoriteActivity
 import com.dicoding.latihan.githubuserdicoding.appbar.settings.SettingPreference
 import com.dicoding.latihan.githubuserdicoding.appbar.settings.SettingThemeActivity
 import com.dicoding.latihan.githubuserdicoding.appbar.settings.SettingViewModel
 import com.dicoding.latihan.githubuserdicoding.appbar.settings.ViewModelFactory
+import com.dicoding.latihan.githubuserdicoding.databinding.ActivityMainBinding
+import com.dicoding.latihan.githubuserdicoding.detail.UserDetailActivity
 import com.dicoding.latihan.githubuserdicoding.raw.UserSearch
 import com.dicoding.latihan.githubuserdicoding.viewmodel.MainViewModel
 
-private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "settings")
+private val Context.dataStore: DataStore<androidx.datastore.preferences.core.Preferences> by preferencesDataStore(name = "settings")
 class MainActivity : AppCompatActivity(), ShareCallback {
 
     private lateinit var binding: ActivityMainBinding
@@ -45,14 +44,17 @@ class MainActivity : AppCompatActivity(), ShareCallback {
         val pref = SettingPreference.getInstance(dataStore)
         settingViewModel = ViewModelProvider(this, ViewModelFactory(pref)).get(SettingViewModel::class.java)
 
-        settingViewModel.getThemeSetting().observe(this, {isDarkModeActive ->
+        settingViewModel.getThemeSetting().observe(this) { isDarkModeActive ->
             if (isDarkModeActive) {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
             } else {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
             }
-        })
+        }
 
+        /**
+         * Alternatif View Model untuk mendapatkan data thema
+         */
         //viewModel = ViewModelProvider(this, ViewModelFactory(pref)).get(MainViewModel::class.java)
 
 //        viewModel.getThemeSetting().observe(this, {isDarkModeActive ->
@@ -82,7 +84,7 @@ class MainActivity : AppCompatActivity(), ShareCallback {
         userAdapter = UserAdapter(this@MainActivity)
         showRecylerView()
 
-        viewModel.getSearchUser().observe(this, { users ->
+        viewModel.getSearchUser().observe(this) { users ->
             if (users != null) {
                 userAdapter.setList(users)
                 showLoading(false)
@@ -91,12 +93,12 @@ class MainActivity : AppCompatActivity(), ShareCallback {
             if (item) {
                 binding.frameError.visibility = View.VISIBLE
             }
-        })
+        }
 
-        viewModel.noData.observe(this, {
+        viewModel.noData.observe(this) {
             showNoData(it)
             showLoading(false)
-        })
+        }
 
         /**
          * alternatif intent ke kelas Detail
@@ -117,12 +119,12 @@ class MainActivity : AppCompatActivity(), ShareCallback {
         showLoading(true)
         viewModel.getListUser()
 
-        viewModel.listMainUsers.observe(this, {listMain ->
+        viewModel.listMainUsers.observe(this) { listMain ->
             if (listMain != null) {
                 userAdapter.setList(listMain)
                 showLoading(false)
             }
-        })
+        }
     }
 
 
@@ -180,7 +182,6 @@ class MainActivity : AppCompatActivity(), ShareCallback {
         intent.putExtra(UserDetailActivity.EXTRA_INTENT, users.username)
         intent.putExtra(UserDetailActivity.EXTRA_USERS, users)
         startActivity(intent)
-
     }
 
 

@@ -44,7 +44,7 @@ class FavoriteActivity : AppCompatActivity() {
 
         })
 
-        viewModel.getListFavorite()?.observe(this, {users ->
+        viewModel.getListFavorite()?.observe(this) { users ->
             if (users != null) {
                 val list = mapList(users)
                 adapter.setList(list)
@@ -53,7 +53,7 @@ class FavoriteActivity : AppCompatActivity() {
             if (item) {
                 binding.empty.visibility = View.VISIBLE
             }
-        })
+        }
 
     }
 

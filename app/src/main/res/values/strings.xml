@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Github User Dicoding</string>
+    <string name="app_name">Github User Apps</string>
     <string name="user_name">name_user</string>
     <string name="location">location</string>
     <string name="repository">Repository</string>

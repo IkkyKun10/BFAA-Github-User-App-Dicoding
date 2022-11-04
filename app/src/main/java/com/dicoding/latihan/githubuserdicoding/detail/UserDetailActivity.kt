@@ -31,7 +31,7 @@ class UserDetailActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityUserDetailBinding
     private val viewModel by viewModels<DetailViewModel>()
-    private var isChecked = false
+    private var isChecked: Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -55,16 +55,18 @@ class UserDetailActivity : AppCompatActivity() {
         val userIntent = intent.getParcelableExtra<UserSearch>(EXTRA_USERS)
 
         showLoading(true)
-        username?.let { viewModel.setDetailUser(it) }
+        if (username != null) {
+            viewModel.setDetailUser(username)
+        }
 
-        viewModel.getDetailUser().observe(this, {users ->
+        viewModel.getDetailUser().observe(this) { users ->
             if (username == users.username) {
                 if (users != null) {
                     dataShowUser(users)
                     showLoading(false)
                 }
             }
-        })
+        }
 
         sectionPagerAdapter.username = username
         //
@@ -103,7 +105,6 @@ class UserDetailActivity : AppCompatActivity() {
         binding.tvCompany.text = users?.company
         binding.tvLocation.text = users?.location
         binding.tvUsername.text = this.resources.getString(R.string.name_user, users?.username)
-
 
         Glide.with(this)
             .load(users?.avatar)

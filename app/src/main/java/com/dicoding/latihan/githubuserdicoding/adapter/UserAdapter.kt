@@ -2,7 +2,9 @@ package com.dicoding.latihan.githubuserdicoding.adapter
 
 import android.util.Log
 import android.view.LayoutInflater
+import android.view.PixelCopy.request
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
@@ -11,6 +13,20 @@ import com.dicoding.latihan.githubuserdicoding.databinding.ItemUserGithubBinding
 import com.dicoding.latihan.githubuserdicoding.raw.UserSearch
 
 class UserAdapter(private var callback: ShareCallback) : RecyclerView.Adapter<UserAdapter.UserViewHolder>() {
+
+    //val onItemClick: ((UserSearch) -> Unit)? = null
+
+//    companion object {
+//        private val DIFF_CALLBACK = object : DiffUtil.ItemCallback<UserSearch>() {
+//            override fun areItemsTheSame(oldItem: UserSearch, newItem: UserSearch): Boolean =
+//                oldItem.userId == newItem.userId
+//
+//
+//            override fun areContentsTheSame(oldItem: UserSearch, newItem: UserSearch): Boolean =
+//                oldItem == newItem
+//
+//        }
+//    }
 
     /**
      * alternatif intent ke kelas Detail
@@ -30,17 +46,17 @@ class UserAdapter(private var callback: ShareCallback) : RecyclerView.Adapter<Us
     }
 
     inner class UserViewHolder(private val binding: ItemUserGithubBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(user: UserSearch){
+        fun bind(user: UserSearch) {
 
             /**
              * alternatif intent ke kelas Detail
 
             binding.root.setOnClickListener {
-                onItemClickCallback?.onItemClick(user)
+            onItemClickCallback?.onItemClick(user)
             }
-            */
+             */
 
-            with(binding){
+            with(binding) {
                 tvItemName.text = user.username
                 tvItemId.text = user.userId.toString()
                 tvItemUrl.text = user.htmlUrl
@@ -48,6 +64,7 @@ class UserAdapter(private var callback: ShareCallback) : RecyclerView.Adapter<Us
 
                 imgshare.setOnClickListener { callback.onShareClick(user) }
                 itemView.setOnClickListener { callback.onNavDetail(user) }
+                //itemView.setOnClickListener { callback.onItemClick(user) }
 
                 Glide.with(itemView)
                     .load(user.avatar)
@@ -55,8 +72,6 @@ class UserAdapter(private var callback: ShareCallback) : RecyclerView.Adapter<Us
                     .error(R.drawable.ic_error)
                     .into(imgItemUser)
             }
-
-
 
             Log.e("User Adapter", "Checking: ${user.username}")
 
@@ -78,8 +93,8 @@ class UserAdapter(private var callback: ShareCallback) : RecyclerView.Adapter<Us
     /**
      * alternatif intent ke kelas Detail
      */
-//    interface OnItemClickCallback {
-//        fun onItemClick(data: UserSearch)
-//    }
+    interface OnItemClickCallback {
+        fun onItemClick(data: UserSearch)
+    }
 }
 

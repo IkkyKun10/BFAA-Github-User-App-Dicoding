@@ -30,7 +30,7 @@ class FollowingFragment : Fragment(R.layout.fragment_follow) {
 
         showLoading(true)
         username?.let { viewModel.setFollowingList(it) }
-        viewModel.getFollowingList().observe(viewLifecycleOwner, {items ->
+        viewModel.getFollowingList().observe(viewLifecycleOwner) { items ->
             if (items != null) {
                 mAdapter.setList(items)
                 showLoading(false)
@@ -39,7 +39,7 @@ class FollowingFragment : Fragment(R.layout.fragment_follow) {
             if (item) {
                 binding?.frameError?.visibility = View.VISIBLE
             }
-        })
+        }
 
         mAdapter.setOnItemClickCallback(object : FollowAdapter.OnItemClickCallback {
             override fun onItemClick(data: UserSearch) {

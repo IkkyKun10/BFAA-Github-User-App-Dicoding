@@ -34,6 +34,7 @@ class MainActivity : AppCompatActivity(), ShareCallback {
         binding.rvMain.adapter = githubUser
     }
 
+    @Suppress("DEPRECATION")
     override fun onShareClick(user: User) {
         if (application != null) {
             val mimeType = "text/plain"

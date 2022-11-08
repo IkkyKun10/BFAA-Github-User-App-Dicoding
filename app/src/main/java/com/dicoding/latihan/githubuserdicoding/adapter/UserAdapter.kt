@@ -44,5 +44,4 @@ class UserAdapter(private val listUser: ArrayList<User>, private val callback: S
 
     override fun getItemCount(): Int = listUser.size
 
-
 }

@@ -11,7 +11,6 @@ import com.dicoding.latihan.githubuserdicoding.raw.User
 
 class UserAdapter(private val listUser: ArrayList<User>, private val callback: ShareCallback) : RecyclerView.Adapter<UserAdapter.UserViewHolder>() {
 
-
     inner class UserViewHolder(private val binding: ItemUserGithubBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(user: User){
             with(binding){

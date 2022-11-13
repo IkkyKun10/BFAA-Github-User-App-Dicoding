@@ -2,7 +2,6 @@ package com.dicoding.latihan.githubuserdicoding.adapter
 
 import android.util.Log
 import android.view.LayoutInflater
-import android.view.PixelCopy.request
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
@@ -13,8 +12,8 @@ import com.dicoding.latihan.githubuserdicoding.R
 import com.dicoding.latihan.githubuserdicoding.databinding.ItemUserGithubBinding
 import com.dicoding.latihan.githubuserdicoding.raw.UserSearch
 
-class UserAdapter(private var callback: ShareCallback) : ListAdapter<UserSearch, UserAdapter.UserViewHolder>(
-    DIFF_CALLBACK) {
+class UserAdapter(private var callback: ShareCallback)
+    : ListAdapter<UserSearch, UserAdapter.UserViewHolder>(DIFF_CALLBACK) {
 
     //val onItemClick: ((UserSearch) -> Unit)? = null
 

@@ -148,6 +148,7 @@ class MainActivity : AppCompatActivity(), ShareCallback {
     }
 
 
+    @Suppress("DEPRECATION")
     override fun onShareClick(users: UserSearch) {
         if (application != null) {
             val mimeType = "text/plain"

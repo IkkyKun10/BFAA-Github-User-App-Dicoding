@@ -32,7 +32,8 @@ class FollowingFragment : Fragment(R.layout.fragment_follow) {
         username?.let { viewModel.setFollowingList(it) }
         viewModel.getFollowingList().observe(viewLifecycleOwner) { items ->
             if (items != null) {
-                mAdapter.setList(items)
+                //mAdapter.setList(items)
+                mAdapter.submitList(items)
                 showLoading(false)
             }
             val item = items.isEmpty()

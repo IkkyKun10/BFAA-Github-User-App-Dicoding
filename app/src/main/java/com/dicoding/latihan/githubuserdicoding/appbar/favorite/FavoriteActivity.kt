@@ -27,7 +27,7 @@ class FavoriteActivity : AppCompatActivity() {
         binding = ActivityFavoriteBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        supportActionBar?.title = "Favorite User Github"
+        supportActionBar?.title = resources.getString(R.string.fav_activity)
         //supportActionBar?.setDisplayShowHomeEnabled(true)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
@@ -47,7 +47,8 @@ class FavoriteActivity : AppCompatActivity() {
         viewModel.getListFavorite()?.observe(this) { users ->
             if (users != null) {
                 val list = mapList(users)
-                adapter.setList(list)
+                //adapter.setList(list)
+                adapter.submitList(list)
             }
             val item = users.isEmpty()
             if (item) {

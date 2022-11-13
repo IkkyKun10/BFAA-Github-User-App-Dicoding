@@ -20,8 +20,6 @@ import retrofit2.Response
 
 class DetailViewModel(application: Application) : AndroidViewModel(application) {
 
-    private val TAG = "Detail ViewModel"
-
     private val user = MutableLiveData<UserDetailResponse>()
 
     private var userDao: UserFavoriteDao?
@@ -77,5 +75,9 @@ class DetailViewModel(application: Application) : AndroidViewModel(application) 
         CoroutineScope(Dispatchers.IO).launch {
             userDao?.deleteById(userId)
         }
+    }
+
+    companion object {
+        private const val TAG = "Detail ViewModel"
     }
 }

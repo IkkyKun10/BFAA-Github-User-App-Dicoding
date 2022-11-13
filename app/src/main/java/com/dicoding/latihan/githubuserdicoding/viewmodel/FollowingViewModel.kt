@@ -12,8 +12,6 @@ import retrofit2.Response
 
 class FollowingViewModel : ViewModel() {
 
-    private val TAG = "FollowingViewModel"
-
     private var listFollowingUsers = MutableLiveData<ArrayList<UserSearch>>()
 
     fun setFollowingList(username: String) {
@@ -36,5 +34,9 @@ class FollowingViewModel : ViewModel() {
 
     fun getFollowingList() : LiveData<ArrayList<UserSearch>> {
         return listFollowingUsers
+    }
+
+    companion object {
+        private const val TAG = "FollowingViewModel"
     }
 }

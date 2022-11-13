@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.PixelCopy.request
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
@@ -12,21 +13,22 @@ import com.dicoding.latihan.githubuserdicoding.R
 import com.dicoding.latihan.githubuserdicoding.databinding.ItemUserGithubBinding
 import com.dicoding.latihan.githubuserdicoding.raw.UserSearch
 
-class UserAdapter(private var callback: ShareCallback) : RecyclerView.Adapter<UserAdapter.UserViewHolder>() {
+class UserAdapter(private var callback: ShareCallback) : ListAdapter<UserSearch, UserAdapter.UserViewHolder>(
+    DIFF_CALLBACK) {
 
     //val onItemClick: ((UserSearch) -> Unit)? = null
 
-//    companion object {
-//        private val DIFF_CALLBACK = object : DiffUtil.ItemCallback<UserSearch>() {
-//            override fun areItemsTheSame(oldItem: UserSearch, newItem: UserSearch): Boolean =
-//                oldItem.userId == newItem.userId
-//
-//
-//            override fun areContentsTheSame(oldItem: UserSearch, newItem: UserSearch): Boolean =
-//                oldItem == newItem
-//
-//        }
-//    }
+    companion object {
+        private val DIFF_CALLBACK = object : DiffUtil.ItemCallback<UserSearch>() {
+            override fun areItemsTheSame(oldItem: UserSearch, newItem: UserSearch): Boolean =
+                oldItem.userId == newItem.userId
+
+
+            override fun areContentsTheSame(oldItem: UserSearch, newItem: UserSearch): Boolean =
+                oldItem == newItem
+
+        }
+    }
 
     /**
      * alternatif intent ke kelas Detail
@@ -85,16 +87,16 @@ class UserAdapter(private var callback: ShareCallback) : RecyclerView.Adapter<Us
     }
 
     override fun onBindViewHolder(holder: UserViewHolder, position: Int) {
-        holder.bind(listUser[position])
+        holder.bind(getItem(position))
     }
 
-    override fun getItemCount(): Int = listUser.size
+    override fun getItemCount(): Int = currentList.size
 
     /**
      * alternatif intent ke kelas Detail
      */
-    interface OnItemClickCallback {
-        fun onItemClick(data: UserSearch)
-    }
+//    interface OnItemClickCallback {
+//        fun onItemClick(data: UserSearch)
+//    }
 }
 

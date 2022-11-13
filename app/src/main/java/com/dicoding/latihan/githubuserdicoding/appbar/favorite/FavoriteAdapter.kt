@@ -2,6 +2,8 @@ package com.dicoding.latihan.githubuserdicoding.appbar.favorite
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
@@ -9,7 +11,19 @@ import com.dicoding.latihan.githubuserdicoding.R
 import com.dicoding.latihan.githubuserdicoding.databinding.ItemFavoriteBinding
 import com.dicoding.latihan.githubuserdicoding.raw.UserSearch
 
-class FavoriteAdapter : RecyclerView.Adapter<FavoriteAdapter.FavoriteViewHolder>() {
+class FavoriteAdapter : ListAdapter<UserSearch, FavoriteAdapter.FavoriteViewHolder>(DIFF_CALLBACK) {
+
+    companion object {
+            private val DIFF_CALLBACK = object : DiffUtil.ItemCallback<UserSearch>() {
+                override fun areItemsTheSame(oldItem: UserSearch, newItem: UserSearch): Boolean =
+                    oldItem.userId == newItem.userId
+
+
+                override fun areContentsTheSame(oldItem: UserSearch, newItem: UserSearch): Boolean =
+                    oldItem == newItem
+
+            }
+        }
 
     private var onItemClickCallback: OnItemClickCallback? = null
 
@@ -52,10 +66,10 @@ class FavoriteAdapter : RecyclerView.Adapter<FavoriteAdapter.FavoriteViewHolder>
     }
 
     override fun onBindViewHolder(holder: FavoriteViewHolder, position: Int) {
-        holder.bind(listFavorite[position])
+        holder.bind(getItem(position))
     }
 
-    override fun getItemCount(): Int = listFavorite.size
+    override fun getItemCount(): Int = currentList.size
 
 
     interface OnItemClickCallback {

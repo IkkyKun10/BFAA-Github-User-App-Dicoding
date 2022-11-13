@@ -14,7 +14,7 @@ abstract class UserFavoriteDatabase : RoomDatabase() {
         @Volatile
         private var INSTANCE: UserFavoriteDatabase? = null
 
-        fun getInstance(context: Context) : UserFavoriteDatabase? {
+        fun getInstance(context: Context) : UserFavoriteDatabase {
             if (INSTANCE == null) {
                 synchronized(UserFavoriteDatabase::class.java) {
                     if (INSTANCE == null) {

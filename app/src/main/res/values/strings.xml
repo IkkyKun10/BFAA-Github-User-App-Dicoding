@@ -22,4 +22,6 @@
     <string name="next">Selanjutnya</string>
     <string name="dark_theme">Dark Theme</string>
     <string name="empty_favorite">Tidak ada Favorite</string>
+    <string name="no_data">No Data</string>
+    <string name="fav_activity">Favorite User Github</string>
 </resources>

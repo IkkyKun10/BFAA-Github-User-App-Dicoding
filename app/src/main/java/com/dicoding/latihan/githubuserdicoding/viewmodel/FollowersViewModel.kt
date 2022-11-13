@@ -11,7 +11,6 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class FollowersViewModel : ViewModel() {
-    private val TAG = "FollowersViewModel"
 
     private var listUserFollowers = MutableLiveData<ArrayList<UserSearch>>()
 
@@ -35,5 +34,9 @@ class FollowersViewModel : ViewModel() {
 
     fun getFollowersList() : LiveData<ArrayList<UserSearch>> {
         return listUserFollowers
+    }
+
+    companion object {
+        private const val TAG = "FollowersViewModel"
     }
 }

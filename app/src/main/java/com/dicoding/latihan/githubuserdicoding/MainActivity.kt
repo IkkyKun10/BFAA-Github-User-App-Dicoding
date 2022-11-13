@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.app.ShareCompat
 import androidx.datastore.core.DataStore
+import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.preferencesDataStore
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -27,7 +28,8 @@ import com.dicoding.latihan.githubuserdicoding.detail.UserDetailActivity
 import com.dicoding.latihan.githubuserdicoding.raw.UserSearch
 import com.dicoding.latihan.githubuserdicoding.viewmodel.MainViewModel
 
-private val Context.dataStore: DataStore<androidx.datastore.preferences.core.Preferences> by preferencesDataStore(name = "settings")
+private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "settings")
+
 class MainActivity : AppCompatActivity(), ShareCallback {
 
     private lateinit var binding: ActivityMainBinding
@@ -42,7 +44,7 @@ class MainActivity : AppCompatActivity(), ShareCallback {
         setContentView(binding.root)
 
         val pref = SettingPreference.getInstance(dataStore)
-        settingViewModel = ViewModelProvider(this, ViewModelFactory(pref)).get(SettingViewModel::class.java)
+        settingViewModel = ViewModelProvider(this, ViewModelFactory(pref))[SettingViewModel::class.java]
 
         settingViewModel.getThemeSetting().observe(this) { isDarkModeActive ->
             if (isDarkModeActive) {
@@ -86,7 +88,8 @@ class MainActivity : AppCompatActivity(), ShareCallback {
 
         viewModel.getSearchUser().observe(this) { users ->
             if (users != null) {
-                userAdapter.setList(users)
+                //userAdapter.setList(users)
+                userAdapter.submitList(users)
                 showLoading(false)
             }
             val item = users.isEmpty()
@@ -121,7 +124,8 @@ class MainActivity : AppCompatActivity(), ShareCallback {
 
         viewModel.listMainUsers.observe(this) { listMain ->
             if (listMain != null) {
-                userAdapter.setList(listMain)
+                //userAdapter.setList(listMain)
+                userAdapter.submitList(listMain)
                 showLoading(false)
             }
         }
@@ -195,10 +199,6 @@ class MainActivity : AppCompatActivity(), ShareCallback {
     }
 
     private fun showNoData(state: Boolean) {
-        if (state) {
-            binding.frameError.visibility = View.VISIBLE
-        } else {
-            binding.frameError.visibility = View.GONE
-        }
+        if (state) binding.frameError.visibility = View.VISIBLE else View.GONE
     }
 }
